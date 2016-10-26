@@ -6,7 +6,7 @@
 * **BOOTSTRAP** - *true|false (default: false)*
 * **SERVER** - *true|false (default: false)*
 * **ENCRYPT** - *use "docker run --rm consul keygen"*
-* **CONSUL_CLUSTER_IPS** - *list ip addreesses, delimiter - ","*
+* **CONSUL_CLUSTER_IPS** - *list ip addresses, delimiter - ","*
 
 ### Example
 ***Consul Bootstrap Server 1***
@@ -50,4 +50,9 @@ docker run -ti --rm --name client \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3,172.17.0.4 \
 	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
+```
+
+***Or***
+```
+docker-compose up -d
 ```
