@@ -1,6 +1,5 @@
 # Consul
 
-```
 ### ENV
 * **NODE_NAME** 
 * **BOOTSTRAP_EXPECT** - *number*
