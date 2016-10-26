@@ -1,0 +1,32 @@
+version: '2'
+services:
+  node-1:
+    image: shcoder/alpine-consul
+    ports:
+      - 8500:8500
+    environment:
+      - NODE_NAME=node-1
+      - BOOTSTRAP_EXPECT=2
+      - SERVER=true
+      - CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4
+      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+  node-2:
+    image: shcoder/alpine-consul
+    environment:
+      - NODE_NAME=node-2
+      - SERVER=true
+      - CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.4
+      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+  node-3:
+    image: shcoder/alpine-consul
+    environment:
+      - NODE_NAME=node-3
+      - SERVER=true
+      - CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.2
+      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+  client:
+    image: shcoder/alpine-consul
+    environment:
+      - NODE_NAME=client
+      - CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.2,172.17.0.4
+      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
