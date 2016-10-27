@@ -6,32 +6,32 @@ services:
     ports:
       - 8500:8500
     environment:
-      - NODE_NAME=node-1
-      - BOOTSTRAP_EXPECT=3
-      - SERVER=true
+      - CONSUL_NODE_NAME=node-1
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_SERVER=true
       - CONSUL_CLUSTER_IPS=node-2,node-3
-      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+      - CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
   node-2:
     image: shcoder/alpine-consul
     hostname: node-2
     environment:
-      - NODE_NAME=node-2
-      - BOOTSTRAP_EXPECT=3
-      - SERVER=true
+      - CONSUL_NODE_NAME=node-2
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_SERVER=true
       - CONSUL_CLUSTER_IPS=node-1,node-3
-      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+      - CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
   node-3:
     image: shcoder/alpine-consul
     hostname: node-3
     environment:
-      - NODE_NAME=node-3
-      - BOOTSTRAP_EXPECT=3
-      - SERVER=true
+      - CONSUL_NODE_NAME=node-3
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_SERVER=true
       - CONSUL_CLUSTER_IPS=node-1,node-2
-      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+      - CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
   client:
     image: shcoder/alpine-consul
     environment:
-      - NODE_NAME=client
+      - CONSUL_NODE_NAME=client
       - CONSUL_CLUSTER_IPS=node-1,node-2,node-3
-      - ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==
+      - CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA==

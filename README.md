@@ -1,19 +1,19 @@
 # Consul
 
 ### ENV
-* **NODE_NAME** 
-* **DATACENTER** 
-* **DATA_DIR** 
-* **LOG_LEVEL** 
-* **ENABLE_SYSLOG** 
-* **LEAVE_ON_TERMINATE** 
-* **CLIENT_ADDR** 
-* **ADVERTISE_ADDR** 
-* **ADVERTISE_ADDR_WAN** 
-* **BOOTSTRAP_EXPECT** - *number*
-* **BOOTSTRAP** - *true|false (default: false)*
-* **SERVER** - *true|false (default: false)*
-* **ENCRYPT** - *use "docker run --rm consul keygen"*
+* **CONSUL_NODE_NAME** 
+* **CONSUL_DATACENTER** 
+* **CONSUL_DATA_DIR** 
+* **CONSUL_LOG_LEVEL** 
+* **CONSUL_ENABLE_SYSLOG** 
+* **CONSUL_LEAVE_ON_TERMINATE** 
+* **CONSUL_CLIENT_ADDR** 
+* **CONSUL_ADVERTISE_ADDR** 
+* **CONSUL_ADVERTISE_ADDR_WAN** 
+* **CONSUL_BOOTSTRAP_EXPECT** - *number*
+* **CONSUL_BOOTSTRAP** - *true|false (default: false)*
+* **CONSUL_SERVER** - *true|false (default: false)*
+* **CONSUL_ENCRYPT** - *use "docker run --rm consul keygen"*
 * **CONSUL_CLUSTER_IPS** - *list ip addresses, delimiter - ","*
 
 ### Example
@@ -21,11 +21,11 @@
 
 ```
 docker run -ti --rm --name node-1 -p 8500:8500 \
-	-e NODE_NAME=node-1 \
-	-e BOOTSTRAP_EXPECT=3 \
-	-e SERVER=true \
+	-e CONSUL_NODE_NAME=node-1 \
+	-e CONSUL_BOOTSTRAP_EXPECT=3 \
+	-e CONSUL_SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4 \
-	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 
 ```
@@ -33,11 +33,11 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name node-2 \
-	-e NODE_NAME=node-2 \
-	-e BOOTSTRAP_EXPECT=3 \
-	-e SERVER=true \
+	-e CONSUL_NODE_NAME=node-2 \
+	-e CONSUL_BOOTSTRAP_EXPECT=3 \
+	-e CONSUL_SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.4 \
-	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 
 shcoder/alpine-consul
 ```
@@ -45,11 +45,11 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name node-3 \
-	-e NODE_NAME=node-3 \
-	-e BOOTSTRAP_EXPECT=3 \
-	-e SERVER=true \
+	-e CONSUL_NODE_NAME=node-3 \
+	-e CONSUL_BOOTSTRAP_EXPECT=3 \
+	-e CONSUL_SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3 \
-	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 
 ```
@@ -57,9 +57,9 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name client \
-	-e NODE_NAME=client \
+	-e CONSUL_NODE_NAME=client \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3,172.17.0.4 \
-	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 
 ```
