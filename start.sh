@@ -12,7 +12,7 @@ if [ -z "${ADVERTISE_ADDR}" ]; then
 fi
 
 sed -i -e "s#\"node_name\":.*#\"node_name\": \"${CONSUL_NODE_NAME}\",#" /etc/consul.d/agent.json
-sed -i -e "s#\"node_name\":.*#\"node_name\": \"${ADVERTISE_ADDR}\",#" /etc/consul.d/agent.json
+sed -i -e "s#\"advertise_addr\":.*#\"advertise_addr\": \"${ADVERTISE_ADDR}\",#" /etc/consul.d/agent.json
 
 if [ ! -z "${CONSUL_BOOTSTRAP_EXPECT}" ]; then 
   sed -i -e "s#\"bootstrap\":.*#\"bootstrap_expect\": ${CONSUL_BOOTSTRAP_EXPECT},#" /etc/consul.d/agent.json
