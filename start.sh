@@ -1,10 +1,18 @@
 #!/bin/bash
 
+NETWORK_INTERFACE=${CONSUL_NETWORK_INTERFACE-eth0}
+
 if [ -z "${CONSUL_NODE_NAME}" ]; then 
   CONSUL_NODE_NAME="${HOSTNAME}"
 fi
 
+if [ -z "${ADVERTISE_ADDR}" ]; then 
+  IPv4=$(ip -o -4 addr show ${NETWORK_INTERFACE})
+  ADVERTISE_ADDR=$(echo ${IPv4}|egrep -o "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+"|head -n1)
+fi
+
 sed -i -e "s#\"node_name\":.*#\"node_name\": \"${CONSUL_NODE_NAME}\",#" /etc/consul.d/agent.json
+sed -i -e "s#\"node_name\":.*#\"node_name\": \"${ADVERTISE_ADDR}\",#" /etc/consul.d/agent.json
 
 if [ ! -z "${CONSUL_BOOTSTRAP_EXPECT}" ]; then 
   sed -i -e "s#\"bootstrap\":.*#\"bootstrap_expect\": ${CONSUL_BOOTSTRAP_EXPECT},#" /etc/consul.d/agent.json
@@ -32,10 +40,6 @@ fi
 
 if [ ! -z "${CONSUL_CLIENT_ADDR}" ]; then 
   sed -i -e "s#\"client_addr\":.*#\"client_addr\": ${CONSUL_CLIENT_ADDR},#" /etc/consul.d/agent.json
-fi
-
-if [ ! -z "${CONSUL_ADVERTISE_ADDR}" ]; then 
-  sed -i -e "s#\"advertise_addr\":.*#\"advertise_addr\": ${CONSUL_ADVERTISE_ADDR},#" /etc/consul.d/agent.json
 fi
 
 if [ ! -z "${CONSUL_ADVERTISE_ADDR_WAN}" ]; then 

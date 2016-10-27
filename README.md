@@ -9,6 +9,7 @@
 * **CONSUL_LEAVE_ON_TERMINATE** 
 * **CONSUL_CLIENT_ADDR** 
 * **CONSUL_ADVERTISE_ADDR** 
+* **CONSUL_NETWORK_INTERFACE** 
 * **CONSUL_ADVERTISE_ADDR_WAN** 
 * **CONSUL_BOOTSTRAP_EXPECT** - *number*
 * **CONSUL_BOOTSTRAP** - *true|false (default: false)*
@@ -27,8 +28,8 @@ docker run -ti --rm --name node-1 -p 8500:8500 \
 	-e CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4 \
 	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
-
 ```
+
 ***Consul Server 2***
 
 ```
@@ -41,6 +42,7 @@ docker run -ti --rm --name node-2 \
 
 shcoder/alpine-consul
 ```
+
 ***Consul Server 3***
 
 ```
@@ -51,8 +53,8 @@ docker run -ti --rm --name node-3 \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3 \
 	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
-
 ```
+
 ***Consul Client***
 
 ```
@@ -61,9 +63,10 @@ docker run -ti --rm --name client \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3,172.17.0.4 \
 	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
-
 ```
+
 ***Or***
 ```
 docker-compose up -d
 ```
+
