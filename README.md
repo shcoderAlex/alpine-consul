@@ -73,7 +73,7 @@ docker-compose up -d
 ####If you use Swarm
 
 ```
-docker network create -d overlay --opt encrypted consul-net
+docker network create -d overlay consul-net
 ```
 
 ```
