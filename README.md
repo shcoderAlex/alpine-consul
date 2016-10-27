@@ -17,7 +17,7 @@
 * **CONSUL_CLUSTER_IPS** - *list ip addresses, delimiter - ","*
 
 ### Example
-***Consul Bootstrap Server 1***
+***Consul Server 1***
 
 ```
 docker run -ti --rm --name node-1 -p 8500:8500 \
