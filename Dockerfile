@@ -1,4 +1,4 @@
-FROM shcoder/alpine:glibc
+FROM shcoder/alpine:glibc.supervisor
 
 MAINTAINER shcoder.alex@gmail.com
 
@@ -21,8 +21,9 @@ RUN apk --no-cache add curl unzip jq nmap && \
 
 ADD agent.json /etc/consul.d/
 ADD start.sh /opt/consul/
+ADD consul.ini /etc/supervisor.d/
 RUN chmod +x /opt/consul/start.sh
 
 EXPOSE 8500
 
-CMD /opt/consul/start.sh
+CMD /usr/bin/supervisord -n -c /etc/supervisor.d/supervisord.conf

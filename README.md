@@ -2,6 +2,14 @@
 
 ### ENV
 * **NODE_NAME** 
+* **DATACENTER** 
+* **DATA_DIR** 
+* **LOG_LEVEL** 
+* **ENABLE_SYSLOG** 
+* **LEAVE_ON_TERMINATE** 
+* **CLIENT_ADDR** 
+* **ADVERTISE_ADDR** 
+* **ADVERTISE_ADDR_WAN** 
 * **BOOTSTRAP_EXPECT** - *number*
 * **BOOTSTRAP** - *true|false (default: false)*
 * **SERVER** - *true|false (default: false)*
@@ -14,7 +22,7 @@
 ```
 docker run -ti --rm --name node-1 -p 8500:8500 \
 	-e NODE_NAME=node-1 \
-	-e BOOTSTRAP_EXPECT=2 \
+	-e BOOTSTRAP_EXPECT=3 \
 	-e SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4 \
 	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
@@ -26,6 +34,7 @@ shcoder/alpine-consul
 ```
 docker run -ti --rm --name node-2 \
 	-e NODE_NAME=node-2 \
+	-e BOOTSTRAP_EXPECT=3 \
 	-e SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.4 \
 	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
@@ -37,6 +46,7 @@ shcoder/alpine-consul
 ```
 docker run -ti --rm --name node-3 \
 	-e NODE_NAME=node-3 \
+	-e BOOTSTRAP_EXPECT=3 \
 	-e SERVER=true \
 	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3 \
 	-e ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
