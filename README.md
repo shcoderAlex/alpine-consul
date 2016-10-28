@@ -70,14 +70,14 @@ shcoder/alpine-consul
 docker-compose up -d
 ```
 
-####If you use Swarm
+#### If you use Swarm
 
 ```
 docker network create -d overlay consul-net
 ```
 
 ```
-docker service create --name consul --network consul-net -p 8500:8500 --replicas=3  \
+docker service create --name consul --network consul-net -p 8500:8500 --replicas=3 --constraint "node.labels.node==consul"  \
 	-e CONSUL_BOOTSTRAP_EXPECT=3 \
 	-e CONSUL_SERVER=true \
 	-e CONSUL_CLUSTER_IPS=consul \
