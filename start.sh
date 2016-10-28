@@ -69,4 +69,6 @@ if [ ! -z "${CONSUL_CLUSTER_IPS}" ]; then
   sed -i -e "s#\"retry_join\":.*#\"retry_join\": [\"${RETRY_JOIN}\"],#" /etc/consul.d/agent.json
 fi
 
+trap 'consul leave' SIGTERM
+
 consul agent -config-file=/etc/consul.d/agent.json -config-dir=/etc/consul.d
