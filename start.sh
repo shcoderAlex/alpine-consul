@@ -71,4 +71,4 @@ fi
 
 trap 'consul leave' SIGTERM
 
-consul agent -config-file=/etc/consul.d/agent.json -config-dir=/etc/consul.d
+exec consul agent -pid-file=/var/run/consul.pid -config-file=/etc/consul.d/agent.json -config-dir=/etc/consul.d

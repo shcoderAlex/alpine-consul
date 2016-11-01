@@ -24,6 +24,6 @@ ADD start.sh /opt/consul/
 ADD consul.ini /etc/supervisor.d/
 RUN chmod +x /opt/consul/start.sh
 
-EXPOSE 8500
+EXPOSE 8500 8400 8300 8301 8301/udp 8302 8302/udp 8600 8600/udp
 
 CMD /usr/bin/supervisord -n -c /etc/supervisor.d/supervisord.conf

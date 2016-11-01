@@ -22,11 +22,11 @@
 
 ```
 docker run -ti --rm --name node-1 -p 8500:8500 \
-	-e CONSUL_NODE_NAME=node-1 \
-	-e CONSUL_BOOTSTRAP_EXPECT=3 \
-	-e CONSUL_SERVER=true \
-	-e CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4 \
-	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+  -e CONSUL_NODE_NAME=node-1 \
+  -e CONSUL_BOOTSTRAP_EXPECT=3 \
+  -e CONSUL_SERVER=true \
+  -e CONSUL_CLUSTER_IPS=172.17.0.3,172.17.0.4 \
+  -e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 ```
 
@@ -34,11 +34,11 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name node-2 \
-	-e CONSUL_NODE_NAME=node-2 \
-	-e CONSUL_BOOTSTRAP_EXPECT=3 \
-	-e CONSUL_SERVER=true \
-	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.4 \
-	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+  -e CONSUL_NODE_NAME=node-2 \
+  -e CONSUL_BOOTSTRAP_EXPECT=3 \
+  -e CONSUL_SERVER=true \
+  -e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.4 \
+  -e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 
 shcoder/alpine-consul
 ```
@@ -47,11 +47,11 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name node-3 \
-	-e CONSUL_NODE_NAME=node-3 \
-	-e CONSUL_BOOTSTRAP_EXPECT=3 \
-	-e CONSUL_SERVER=true \
-	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3 \
-	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+  -e CONSUL_NODE_NAME=node-3 \
+  -e CONSUL_BOOTSTRAP_EXPECT=3 \
+  -e CONSUL_SERVER=true \
+  -e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3 \
+  -e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 ```
 
@@ -59,9 +59,9 @@ shcoder/alpine-consul
 
 ```
 docker run -ti --rm --name client \
-	-e CONSUL_NODE_NAME=client \
-	-e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3,172.17.0.4 \
-	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+  -e CONSUL_NODE_NAME=client \
+  -e CONSUL_CLUSTER_IPS=172.17.0.2,172.17.0.3,172.17.0.4 \
+  -e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 ```
 
@@ -78,9 +78,9 @@ docker network create -d overlay consul-net
 
 ```
 docker service create --name consul --network consul-net -p 8500:8500 --replicas=3 --constraint "node.labels.node==consul"  \
-	-e CONSUL_BOOTSTRAP_EXPECT=3 \
-	-e CONSUL_SERVER=true \
-	-e CONSUL_CLUSTER_IPS=consul \
-	-e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
+  -e CONSUL_BOOTSTRAP_EXPECT=3 \
+  -e CONSUL_SERVER=true \
+  -e CONSUL_CLUSTER_IPS=consul \
+  -e CONSUL_ENCRYPT=q7Gsg6LSdrtWFvBpw7vmdA== \
 shcoder/alpine-consul
 ```
